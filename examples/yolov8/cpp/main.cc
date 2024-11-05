@@ -29,6 +29,8 @@
     #include "dma_alloc.hpp"
 #endif
 
+const unsigned int color_list[2] = {COLOR_GREEN, COLOR_RED};
+
 /*-------------------------------------------
                   Main Function
 -------------------------------------------*/
@@ -101,10 +103,10 @@ int main(int argc, char **argv)
         int x2 = det_result->box.right;
         int y2 = det_result->box.bottom;
 
-        draw_rectangle(&src_image, x1, y1, x2 - x1, y2 - y1, COLOR_BLUE, 3);
+        draw_rectangle(&src_image, x1, y1, x2 - x1, y2 - y1, color_list[det_result->cls_id], 3);
 
         sprintf(text, "%s %.1f%%", coco_cls_to_name(det_result->cls_id), det_result->prop * 100);
-        draw_text(&src_image, text, x1, y1 - 20, COLOR_RED, 10);
+        draw_text(&src_image, text, x1, y1 - 20, COLOR_BLUE, 10);
     }
 
     write_image("out.png", &src_image);
